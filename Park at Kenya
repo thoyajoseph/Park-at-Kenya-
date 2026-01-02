@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Park at Kenya | Premium Safaris</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(#0b3d2e, #000);
+  color: #f5f5f5;
+}
+
+header {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 3em;
+  color: #d4af37;
+}
+
+section {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.card {
+  background: #112;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+}
+
+select, input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 25px;
+  padding: 15px;
+  width: 100%;
+  background: #d4af37;
+  color: #000;
+  font-size: 1.1em;
+  border: none;
+  border-radius: 10px;
+}
+
+button:hover {
+  background: #f1c94a;
+}
+
+.price {
+  font-size: 1.5em;
+  margin-top: 20px;
+  color: #d4af37;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #aaa;
+}
+
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 22px;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Park at Kenya</h1>
+  <p>Curated premium safari experiences across Kenya</p>
+</header>
+
+<section class="card">
+  <h2>Plan Your Safari</h2>
+
+  <label>Choose Park</label>
+  <select id="park">
+    <option>Maasai Mara</option>
+    <option>Amboseli</option>
+    <option>Tsavo</option>
+    <option>Lake Nakuru</option>
+    <option>Samburu</option>
+    <option>Diani Coast</option>
+  </select>
+
+  <label>Days</label>
+  <input type="number" id="days" value="3" min="1">
+
+  <label>Nights</label>
+  <input type="number" id="nights" value="2" min="0">
+
+  <label>Package</label>
+  <select id="package">
+    <option value="25000">Budget</option>
+    <option value="60000">Standard</option>
+    <option value="150000">Luxury</option>
+  </select>
+
+  <div class="price" id="price">Estimated Price: KSh 75,000</div>
+
+  <button onclick="bookSafari()">Book via WhatsApp</button>
+</section>
+
+<footer>
+© 2026 Park at Kenya • Premium African Safaris
+</footer>
+
+<a class="whatsapp" href="https://wa.me/254721233311">💬</a>
+
+<script>
+function calculate() {
+  const days = document.getElementById("days").value;
+  const pricePerDay = document.getElementById("package").value;
+  document.getElementById("price").innerText =
+    "Estimated Price: KSh " + (days * pricePerDay).toLocaleString();
+}
+
+document.querySelectorAll("select, input").forEach(e =>
+  e.addEventListener("change", calculate)
+);
+
+function bookSafari() {
+  const park = document.getElementById("park").value;
+  const days = document.getElementById("days").value;
+  const nights = document.getElementById("nights").value;
+  const pkg = document.getElementById("package").selectedOptions[0].text;
+  const price = document.getElementById("price").innerText;
+
+  const msg = `Hello Park at Kenya,%0AI'm interested in a ${days}-day / ${nights}-night ${pkg} safari at ${park}.%0A${price}`;
+  window.open("https://wa.me/254721233311?text=" + msg);
+}
+</script>
+
+</body>
+</html>
